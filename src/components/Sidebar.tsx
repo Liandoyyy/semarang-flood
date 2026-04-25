@@ -9,7 +9,7 @@ interface SidebarProps {
   forecastData: any;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ summary, points, forecastData }) => {
+const Sidebar: React.FC<SidebarProps> = ({ points, forecastData }) => {
   return (
     <div className="flex flex-col h-full">
       {/* Forecast Section */}

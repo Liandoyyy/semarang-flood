@@ -1,5 +1,5 @@
 import React from 'react';
-import type { SummaryData } from '../App';
+import type { SummaryData } from '../types';
 
 interface HeroProps {
   summary: SummaryData;

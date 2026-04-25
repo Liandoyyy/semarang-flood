@@ -92,7 +92,7 @@ const ForecastChart: React.FC<ForecastChartProps> = ({ data }) => {
         scales: {
           y: {
             type: 'linear', display: true, position: 'left',
-            grid: { color: gridColor, drawBorder: false },
+            grid: { color: gridColor },
             ticks: { color: textColor, font: { size: 10 } }
           },
           y1: {

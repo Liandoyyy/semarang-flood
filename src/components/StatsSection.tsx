@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import type { SummaryData, FloodPoint } from '../App';
+import type { SummaryData, FloodPoint } from '../types';
 
 interface StatsSectionProps {
   summary: SummaryData;

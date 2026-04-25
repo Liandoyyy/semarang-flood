@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polygon, Circle, Polyline, LayersControl } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, LayersControl } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { FloodPoint } from '../types';
-import { Navigation, Info, ChevronUp, ChevronDown } from 'lucide-react';
+import { Info, ChevronUp, ChevronDown } from 'lucide-react';
 
-const { BaseLayer, Overlay } = LayersControl;
+const { BaseLayer } = LayersControl;
 const SEMARANG_COORDS: [number, number] = [-7.0051, 110.4381];
 const MAP_ZOOM = 13;
 

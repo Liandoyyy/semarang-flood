@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, LayersControl } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { FloodPoint } from '../types';
 import { Info, ChevronUp, ChevronDown } from 'lucide-react';
 
-const { BaseLayer } = LayersControl;
 const SEMARANG_COORDS: [number, number] = [-7.0051, 110.4381];
 const MAP_ZOOM = 13;
 
@@ -52,14 +51,10 @@ const MapSection: React.FC<MapSectionProps> = ({ points }) => {
           </div>
         </div>
 
-        <LayersControl position="bottomright">
-          <BaseLayer checked name="Light (Voyager)">
-            <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" />
-          </BaseLayer>
-          <BaseLayer name="Satellite">
-            <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
-          </BaseLayer>
-        </LayersControl>
+        <TileLayer 
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" 
+        />
 
         {points.map((pt, i) => (
           <Marker key={i} position={[pt.lat, pt.lng]} icon={createIcon(pt.status)}>

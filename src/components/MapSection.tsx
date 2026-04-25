@@ -11,10 +11,9 @@ const MAP_ZOOM = 13;
 
 interface MapSectionProps {
   points: FloodPoint[];
-  theme: 'light' | 'dark';
 }
 
-const MapSection: React.FC<MapSectionProps> = ({ points, theme }) => {
+const MapSection: React.FC<MapSectionProps> = ({ points }) => {
   const [isLegendOpen, setIsLegendOpen] = useState(false);
 
   // Shadcn-style custom marker (pill shape or clean dot)
@@ -54,11 +53,8 @@ const MapSection: React.FC<MapSectionProps> = ({ points, theme }) => {
         </div>
 
         <LayersControl position="bottomright">
-          <BaseLayer checked={theme === 'light'} name="Light (Voyager)">
+          <BaseLayer checked name="Light (Voyager)">
             <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" />
-          </BaseLayer>
-          <BaseLayer checked={theme === 'dark'} name="Dark (Carto)">
-            <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
           </BaseLayer>
           <BaseLayer name="Satellite">
             <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />

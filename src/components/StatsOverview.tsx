@@ -1,51 +1,67 @@
 import React from 'react';
-import type { SummaryData } from '../types';
-import { Droplets, AlertTriangle, Users, MapPin } from 'lucide-react';
+import { Activity, AlertTriangle, Flame, ShieldCheck } from 'lucide-react';
 
 interface StatsOverviewProps {
-  summary: SummaryData;
+  stats: {
+    aktif: number;
+    bahaya: number;
+    siaga: number;
+    aman: number;
+  };
 }
 
-const StatsOverview: React.FC<StatsOverviewProps> = ({ summary }) => {
+const StatsOverview: React.FC<StatsOverviewProps> = ({ stats }) => {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 pointer-events-auto">
-      <StatCard 
-        icon={<MapPin className="w-4 h-4 text-primary" />} 
-        label="Titik Pantau Aktif" 
-        value={summary.total_points} 
-        sub="Semua sistem normal"
-      />
-      <StatCard 
-        icon={<AlertTriangle className="w-4 h-4 text-orange-500" />} 
-        label="Zona Siaga" 
-        value={summary.flood_zones_active} 
-        sub="Waspada di 3 kelurahan"
-      />
-      <StatCard 
-        icon={<Droplets className="w-4 h-4 text-blue-500" />} 
-        label="Ketinggian Maks" 
-        value="142cm" 
-        sub="Banjir Kanal Barat"
-      />
-      <StatCard 
-        icon={<Users className="w-4 h-4 text-green-500" />} 
-        label="Evakuasi Warga" 
-        value={summary.evacuated_people} 
-        sub="Terkoordinasi tim SAR"
-      />
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-full">
+      {/* Stasiun Aktif */}
+      <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex items-start gap-4">
+        <div className="p-3 bg-blue-50 text-blue-600 rounded-lg">
+          <Activity className="w-6 h-6" />
+        </div>
+        <div>
+          <div className="text-xs font-semibold text-slate-500 mb-1">STASIUN AKTIF</div>
+          <div className="text-2xl font-bold text-slate-800">{stats.aktif}</div>
+          <div className="text-xs text-slate-500 mt-1">Tersebar di seluruh kota</div>
+        </div>
+      </div>
+
+      {/* Bahaya */}
+      <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex items-start gap-4">
+        <div className="p-3 bg-red-50 text-red-600 rounded-lg">
+          <AlertTriangle className="w-6 h-6" />
+        </div>
+        <div>
+          <div className="text-xs font-semibold text-slate-500 mb-1">BAHAYA</div>
+          <div className="text-2xl font-bold text-slate-800">{stats.bahaya}</div>
+          <div className="text-xs text-slate-500 mt-1">Melebihi ambang batas</div>
+        </div>
+      </div>
+
+      {/* Siaga */}
+      <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex items-start gap-4">
+        <div className="p-3 bg-orange-50 text-orange-500 rounded-lg">
+          <Flame className="w-6 h-6" />
+        </div>
+        <div>
+          <div className="text-xs font-semibold text-slate-500 mb-1">SIAGA</div>
+          <div className="text-2xl font-bold text-slate-800">{stats.siaga}</div>
+          <div className="text-xs text-slate-500 mt-1">Mendekati batas</div>
+        </div>
+      </div>
+
+      {/* Aman */}
+      <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex items-start gap-4">
+        <div className="p-3 bg-emerald-50 text-emerald-600 rounded-lg">
+          <ShieldCheck className="w-6 h-6" />
+        </div>
+        <div>
+          <div className="text-xs font-semibold text-slate-500 mb-1">AMAN</div>
+          <div className="text-2xl font-bold text-slate-800">{stats.aman}</div>
+          <div className="text-xs text-slate-500 mt-1">Kondisi normal</div>
+        </div>
+      </div>
     </div>
   );
 };
-
-const StatCard = ({ icon, label, value, sub }: any) => (
-  <div className="bg-card/90 backdrop-blur border border-border rounded-xl p-4 shadow-sm flex flex-col gap-1 transition-all hover:shadow-md">
-    <div className="flex items-center gap-2 text-muted-foreground text-xs font-medium uppercase tracking-wider">
-      {icon}
-      {label}
-    </div>
-    <div className="text-2xl font-bold text-foreground mt-1">{value}</div>
-    <div className="text-xs text-muted-foreground">{sub}</div>
-  </div>
-);
 
 export default StatsOverview;

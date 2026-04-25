@@ -40,13 +40,13 @@ function App() {
     } catch(e) {
       console.error("API Fetch Error:", e);
       // Fallback dummy data if backend is offline or blocked by Vercel HTTPS
-      const dummyPoints = [
-        { name: "Pos Pantau Kanal Banjir Timur", lat: -6.955, lng: 110.420, water_level_cm: 313, status: "Siaga 1", desc: "Arus deras, level kritis." },
-        { name: "Pos Tanjung Mas (Rob)", lat: -6.950, lng: 110.410, water_level_cm: 137, status: "Siaga 1", desc: "Air laut pasang (Rob)." },
-        { name: "Pos Pantau Kanal Banjir Barat", lat: -6.960, lng: 110.390, water_level_cm: 242, status: "Siaga 2", desc: "Debit air meningkat cepat." },
-        { name: "Pos Pemantau Sungai Beringin", lat: -6.975, lng: 110.350, water_level_cm: 229, status: "Siaga 2", desc: "Hulu hujan lebat." },
-        { name: "Pos Banyumanik", lat: -7.050, lng: 110.415, water_level_cm: 52, status: "Normal", desc: "Aman terkendali." },
-        { name: "Stasiun Pompa Kaligawe", lat: -6.958, lng: 110.435, water_level_cm: 80, status: "Normal", desc: "Pompa aktif maksimal." }
+      const dummyPoints: FloodPoint[] = [
+        { id: "1", name: "Pos Pantau Kanal Banjir Timur", lat: -6.955, lng: 110.420, water_level_cm: 313, status: "Siaga 1", desc: "Arus deras, level kritis.", rainfall_mm: 50, trend: "naik", last_updated: "Baru saja" },
+        { id: "2", name: "Pos Tanjung Mas (Rob)", lat: -6.950, lng: 110.410, water_level_cm: 137, status: "Siaga 1", desc: "Air laut pasang (Rob).", rainfall_mm: 0, trend: "stabil", last_updated: "Baru saja" },
+        { id: "3", name: "Pos Pantau Kanal Banjir Barat", lat: -6.960, lng: 110.390, water_level_cm: 242, status: "Siaga 2", desc: "Debit air meningkat cepat.", rainfall_mm: 30, trend: "naik", last_updated: "Baru saja" },
+        { id: "4", name: "Pos Pemantau Sungai Beringin", lat: -6.975, lng: 110.350, water_level_cm: 229, status: "Siaga 2", desc: "Hulu hujan lebat.", rainfall_mm: 45, trend: "naik", last_updated: "Baru saja" },
+        { id: "5", name: "Pos Banyumanik", lat: -7.050, lng: 110.415, water_level_cm: 52, status: "Normal", desc: "Aman terkendali.", rainfall_mm: 10, trend: "turun", last_updated: "Baru saja" },
+        { id: "6", name: "Stasiun Pompa Kaligawe", lat: -6.958, lng: 110.435, water_level_cm: 80, status: "Normal", desc: "Pompa aktif maksimal.", rainfall_mm: 15, trend: "stabil", last_updated: "Baru saja" }
       ];
       setFloodPoints(dummyPoints);
 

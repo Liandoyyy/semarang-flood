@@ -39,7 +39,17 @@ function App() {
       }
     } catch(e) {
       console.error("API Fetch Error:", e);
-      // Dummy date
+      // Fallback dummy data if backend is offline or blocked by Vercel HTTPS
+      const dummyPoints = [
+        { name: "Pos Pantau Kanal Banjir Timur", lat: -6.955, lng: 110.420, water_level_cm: 313, status: "Siaga 1", desc: "Arus deras, level kritis." },
+        { name: "Pos Tanjung Mas (Rob)", lat: -6.950, lng: 110.410, water_level_cm: 137, status: "Siaga 1", desc: "Air laut pasang (Rob)." },
+        { name: "Pos Pantau Kanal Banjir Barat", lat: -6.960, lng: 110.390, water_level_cm: 242, status: "Siaga 2", desc: "Debit air meningkat cepat." },
+        { name: "Pos Pemantau Sungai Beringin", lat: -6.975, lng: 110.350, water_level_cm: 229, status: "Siaga 2", desc: "Hulu hujan lebat." },
+        { name: "Pos Banyumanik", lat: -7.050, lng: 110.415, water_level_cm: 52, status: "Normal", desc: "Aman terkendali." },
+        { name: "Stasiun Pompa Kaligawe", lat: -6.958, lng: 110.435, water_level_cm: 80, status: "Normal", desc: "Pompa aktif maksimal." }
+      ];
+      setFloodPoints(dummyPoints);
+
       const now = new Date();
       setLastUpdate(`${now.getHours().toString().padStart(2, '0')}.${now.getMinutes().toString().padStart(2, '0')}.${now.getSeconds().toString().padStart(2, '0')}`);
     }

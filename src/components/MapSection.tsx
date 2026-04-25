@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, Polygon, Circle, Polyline, Laye
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { FloodPoint } from '../types';
-import { Navigation, Info } from 'lucide-react';
+import { Navigation, Info, ChevronUp, ChevronDown } from 'lucide-react';
 
 const { BaseLayer, Overlay } = LayersControl;
 const SEMARANG_COORDS: [number, number] = [-7.0051, 110.4381];
@@ -15,6 +15,8 @@ interface MapSectionProps {
 }
 
 const MapSection: React.FC<MapSectionProps> = ({ points, theme }) => {
+  const [isLegendOpen, setIsLegendOpen] = useState(false);
+
   // Shadcn-style custom marker (pill shape or clean dot)
   const createIcon = (status: string) => {
     let color = '#10b981'; // emerald-500
@@ -89,19 +91,28 @@ const MapSection: React.FC<MapSectionProps> = ({ points, theme }) => {
       </MapContainer>
 
       {/* Floating Legend */}
-      <div className="absolute bottom-6 left-4 z-[400] bg-card/90 backdrop-blur border border-border p-3 rounded-xl shadow-sm text-xs">
-        <h4 className="font-semibold mb-2 flex items-center gap-2">
-          <Info className="w-3 h-3 text-muted-foreground" />
-          Keterangan Peta
-        </h4>
-        <div className="space-y-2">
-          <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-red-500"></div> Siaga 1 (Awas)</div>
-          <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-orange-500"></div> Siaga 2 (Waspada)</div>
-          <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div> Normal</div>
-          <div className="flex items-center gap-2 mt-3 pt-2 border-t border-border">
-            <div className="w-3 h-3 border border-red-500 bg-red-500/20 rounded-sm"></div> Area Tergenang
+      <div className="absolute bottom-6 left-4 z-[400] bg-card/90 backdrop-blur border border-border rounded-xl shadow-sm text-xs w-48 overflow-hidden transition-all duration-300">
+        <button 
+          onClick={() => setIsLegendOpen(!isLegendOpen)}
+          className="w-full flex items-center justify-between p-3 font-semibold hover:bg-muted/50 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <Info className="w-4 h-4 text-muted-foreground" />
+            Keterangan Peta
           </div>
-        </div>
+          {isLegendOpen ? <ChevronDown className="w-4 h-4 text-muted-foreground" /> : <ChevronUp className="w-4 h-4 text-muted-foreground" />}
+        </button>
+        
+        {isLegendOpen && (
+          <div className="p-3 pt-0 space-y-2 border-t border-border mt-1">
+            <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-red-500"></div> Siaga 1 (Awas)</div>
+            <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-orange-500"></div> Siaga 2 (Waspada)</div>
+            <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div> Normal</div>
+            <div className="flex items-center gap-2 mt-3 pt-2 border-t border-border">
+              <div className="w-3 h-3 border border-red-500 bg-red-500/20 rounded-sm"></div> Area Tergenang
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
